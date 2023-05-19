@@ -8,8 +8,8 @@ import java.util.List;
 
 /**
  * @description 分页查询结果模型类
- * @author Mr.M
- * @date 2022/9/6 14:15
+ * @author Costar
+ * @date 2023/5/19 18:32
  * @version 1.0
  */
 @Data
