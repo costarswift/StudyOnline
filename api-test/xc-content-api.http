@@ -1,0 +1,8 @@
+POST http://{{content_host}}/content/course/list?pageNo=1&pageSize=5
+Content-Type: application/json
+
+{
+  "auditStatus": "202004",
+  "courseName": "Java",
+  "publishStatus": "203001"
+}
