@@ -1,5 +1,6 @@
 package com.xuecheng.content.model.dto;
 
+import com.xuecheng.content.model.po.CourseBase;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.io.Serializable;
  * @version 1.0
  */
 @Data
-public class CourseBaseInfoDto implements Serializable {
+public class CourseBaseInfoDto extends CourseBase implements Serializable {
 
     /**
      * 收费规则，对应数据字典

@@ -19,9 +19,10 @@
 
         <dependency>
             <groupId>com.xuecheng</groupId>
-            <artifactId>xuecheng-plus-content-service</artifactId>
+            <artifactId>xuecheng-plus-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <!--cloud的基础环境包-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -60,12 +61,6 @@
             <groupId>com.spring4all</groupId>
             <artifactId>swagger-spring-boot-starter</artifactId>
             <version>1.9.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.xuecheng</groupId>
-            <artifactId>xuecheng-plus-base</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
 
