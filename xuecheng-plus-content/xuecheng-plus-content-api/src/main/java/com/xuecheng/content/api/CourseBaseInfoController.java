@@ -10,6 +10,7 @@ import com.xuecheng.content.model.dto.QueryCourseParamsDto;
 import com.xuecheng.content.model.po.CourseBase;
 import com.xuecheng.content.service.CourseBaseInfoService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -56,8 +57,16 @@ public class CourseBaseInfoController {
 
     @ApiOperation("根据id查询课程接口")
     @GetMapping("/course/{courseId}")
+    @ApiImplicitParam(value = "courseId", name = "课程id", required = true, dataType = "Long", paramType = "path")
     public CourseBaseInfoDto getCourseBaseById(@PathVariable Long courseId){
         return courseBaseInfoService.getCourseBaseInfo(courseId);
+    }
+
+    @ApiOperation("根据id删除课程接口")
+    @DeleteMapping("/course/{courseId}")
+    @ApiImplicitParam(value = "courseId", name = "课程id", required = true, dataType = "Long", paramType = "path")
+    public void deleteCourseById(@PathVariable Long courseId){
+        courseBaseInfoService.deleteCourseById(courseId);
     }
 
 }

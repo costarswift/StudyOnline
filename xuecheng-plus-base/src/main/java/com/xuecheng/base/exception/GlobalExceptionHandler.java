@@ -65,5 +65,19 @@ public class GlobalExceptionHandler {
         return new RestErrorResponse(msg);
     }
 
+    //对项目的自定义异常类型进行处理
+    @ResponseBody
+    @ExceptionHandler(BaseException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public BaseException baseException(BaseException e) {
+
+        //记录异常
+        log.error("系统异常{}", e.getErrMessage(), e);
+        //..
+
+        //解析出异常信息
+        return new BaseException(e.geterrCdoe(), e.getErrMessage());
+    }
+
 
 }

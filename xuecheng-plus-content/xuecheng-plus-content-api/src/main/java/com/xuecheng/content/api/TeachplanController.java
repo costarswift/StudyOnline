@@ -18,8 +18,7 @@ public class TeachplanController {
     TeachplanService teachplanService;
 
     @ApiOperation("查询课程计划树形结构")
-    @ApiImplicitParam(value = "courseId", name = "课程id", required = true, dataType = "Long",
-    paramType = "path")
+    @ApiImplicitParam(value = "courseId", name = "课程id", required = true, dataType = "Long", paramType = "path")
     @GetMapping("/teachplan/{courseId}/tree-nodes")
     public List<TeachplanDto> getTreeNodes(@PathVariable Long courseId){
         return teachplanService.findTeachplanTree(courseId);
@@ -31,4 +30,24 @@ public class TeachplanController {
         teachplanService.saveTeachplan(teachplan);
     }
 
+    @DeleteMapping("/teachplan/{teachplanId}")
+    @ApiOperation("删除课程计划")
+    @ApiImplicitParam(value = "teachplanId", name = "课程计划id", required = true, dataType = "Long", paramType = "path")
+    public void deleteTeachplanById( @PathVariable Long teachplanId){
+        teachplanService.deleteTeachplanById(teachplanId);
+    }
+
+    @PostMapping("/teachplan/movedown/{teachplanId}")
+    @ApiOperation("章/节向下移")
+    @ApiImplicitParam(value = "teachplanId", name = "课程计划id", required = true, dataType = "Long", paramType = "path")
+    public void movedown(@PathVariable Long teachplanId){
+
+    }
+
+    @PostMapping("/teachplan/moveup/{teachplanId}")
+    @ApiOperation("章/节向上移")
+    @ApiImplicitParam(value = "teachplanId", name = "课程计划id", required = true, dataType = "Long", paramType = "path")
+    public void moveup(@PathVariable Long teachplanId){
+
+    }
 }
