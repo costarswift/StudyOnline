@@ -130,9 +130,8 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         //保存营销信息
         saveCourseMarket(courseMarketNew);
         //从数据库查询课程的详细信息，包括两部分
-        CourseBaseInfoDto courseBaseInfo = getCourseBaseInfo(courseId);
 
-        return courseBaseInfo;
+        return getCourseBaseInfo(courseId);
     }
 
     //查询课程信息
@@ -225,6 +224,18 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         CourseBaseInfoDto courseBaseInfo = this.getCourseBaseInfo(courseId);
         return courseBaseInfo;
 
+    }
+
+    @Override
+    public void deleteCourseById(long courseId) {
+        CourseBase courseBase = courseBaseMapper.selectById(courseId);
+        if (!"202002".equals(courseBase.getAuditStatus())){
+            XueChengPlusException.cast("课程的审核状态为未提交时方可删除");
+        }
+        int i = courseBaseMapper.deleteById(courseId);
+        if (i != 1){
+            XueChengPlusException.cast("删除失败！");
+        }
     }
 
 }

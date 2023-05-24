@@ -31,4 +31,31 @@ public interface TeachplanService {
      */
     public void saveTeachplan(SaveTeachplanDto teachplanDto);
 
+    /**
+     * @description 根据课程计划Id删除章/节
+     * @param teachplanId  课程Id
+     * @return void
+     * @author Costar
+     * @date 2023年5月23日 13点02分
+     */
+    public void deleteTeachplanById(long teachplanId);
+
+    /**
+     * @description 将章/节向下移动
+     * @param teachplanId  课程Id
+     * @return void
+     * @author Costar
+     * @date 2023年5月23日 14点04分
+     */
+    public void movedown(long teachplanId);
+
+    /**
+     * @description 将章/节向上移动
+     * @param teachplanId  课程Id
+     * @return void
+     * @author Costar
+     * @date 2023年5月23日 14点04分
+     */
+    public void moveup(long teachplanId);
+
 }

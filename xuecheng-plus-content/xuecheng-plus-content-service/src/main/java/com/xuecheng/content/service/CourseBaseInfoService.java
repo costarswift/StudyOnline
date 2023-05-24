@@ -53,4 +53,11 @@ public interface CourseBaseInfoService {
     CourseBaseInfoDto updateCourseBase(Long companyId, EditCourseDto dto);
 
 
+    /**
+     * @description 根据id删除课程基本信息
+     * @param courseId  课程id
+     * @author Costar
+     * @date 2023/05/24 16点22分
+     */
+    void deleteCourseById(long courseId);
 }
