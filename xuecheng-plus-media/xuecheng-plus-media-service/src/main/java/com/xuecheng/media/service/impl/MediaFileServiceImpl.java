@@ -17,7 +17,6 @@ import io.minio.MinioClient;
 import io.minio.UploadObjectArgs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,17 +26,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 /**
- * @author Mr.M
+ * @author Costar
  * @version 1.0
  * @description TODO
- * @date 2022/9/10 8:58
+ * @date 2023年5月27日 18点03分
  */
 @Slf4j
 @Service
@@ -181,8 +179,8 @@ public class MediaFileServiceImpl implements MediaFileService {
      * @param bucket  桶
      * @param objectName 对象名称
      * @return com.xuecheng.media.model.po.MediaFiles
-     * @author Mr.M
-     * @date 2022/10/12 21:22
+     * @author Costar
+     * @date 2023年5月27日 18点05分
      */
     @Transactional
     public MediaFiles addMediaFilesToDb(Long companyId,String fileMd5,UploadFileParamsDto uploadFileParamsDto,String bucket,String objectName){

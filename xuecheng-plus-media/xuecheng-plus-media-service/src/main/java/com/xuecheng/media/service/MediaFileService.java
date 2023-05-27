@@ -6,15 +6,11 @@ import com.xuecheng.media.model.dto.QueryMediaParamsDto;
 import com.xuecheng.media.model.dto.UploadFileParamsDto;
 import com.xuecheng.media.model.dto.UploadFileResultDto;
 import com.xuecheng.media.model.po.MediaFiles;
-import io.minio.UploadObjectArgs;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
 
 /**
  * @description 媒资文件管理业务类
- * @author Mr.M
- * @date 2022/9/10 8:55
+ * @author Costar
+ * @date 2023年5月27日 18点00分
  * @version 1.0
  */
 public interface MediaFileService {
@@ -24,8 +20,8 @@ public interface MediaFileService {
   * @param pageParams 分页参数
   * @param queryMediaParamsDto 查询条件
   * @return com.xuecheng.base.model.PageResult<com.xuecheng.media.model.po.MediaFiles>
-  * @author Mr.M
-  * @date 2022/9/10 8:57
+  * @author costar
+  * @date 2023年5月27日 18点00分
  */
  public PageResult<MediaFiles> queryMediaFiels(Long companyId,PageParams pageParams, QueryMediaParamsDto queryMediaParamsDto);
 

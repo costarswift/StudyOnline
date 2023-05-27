@@ -1,4 +1,4 @@
-POST http://{{content_host}}/content/course/list?pageNo=1&pageSize=5
+POST http://{{gateway_host}}/content/course/list?pageNo=1&pageSize=5
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 }
 
 ### 根据课程id查询课程信息
-GET {{content_host}}/content/course/40
+GET {{gateway_host}}/content/course/40
 
 ### 修改课程
 PUT {{content_host}}/content/course

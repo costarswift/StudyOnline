@@ -2,22 +2,25 @@ package com.xuecheng.media;
 
 import com.j256.simplemagic.ContentInfo;
 import com.j256.simplemagic.ContentInfoUtil;
-import io.minio.*;
-import io.minio.errors.*;
+import io.minio.GetObjectArgs;
+import io.minio.MinioClient;
+import io.minio.RemoveObjectArgs;
+import io.minio.UploadObjectArgs;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
-import java.io.*;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FilterInputStream;
 
 /**
- * @author Mr.M
+ * @author Costar
  * @version 1.0
  * @description 测试minio的sdk
- * @date 2023/2/17 11:55
+ * @date 2023年5月27日 17点52分
  */
 public class MinioTest {
 
