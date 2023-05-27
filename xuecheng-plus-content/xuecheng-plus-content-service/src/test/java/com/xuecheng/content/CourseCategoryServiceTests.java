@@ -10,14 +10,16 @@ import java.util.List;
 
 @SpringBootTest
 class CourseCategoryServiceTests {
+
     @Autowired
     CourseCategoryService courseCategoryService;
 
-
     @Test
-    void testQueryTreeNodes() {
-        List<CourseCategoryTreeDto> categoryTreeDtos = courseCategoryService.queryTreeNodes("1");
-        System.out.println(categoryTreeDtos);
+    public void testCourseCategoryService() {
+
+        List<CourseCategoryTreeDto> courseCategoryTreeDtos = courseCategoryService.queryTreeNodes("1");
+        System.out.println(courseCategoryTreeDtos);
+
     }
 
 }

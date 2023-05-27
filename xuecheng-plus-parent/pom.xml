@@ -21,7 +21,7 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <fastjson.version>1.2.83</fastjson.version>
         <druid-spring-boot-starter.version>1.2.8</druid-spring-boot-starter.version>
-        <mysql-connector-java.version>8.0.30</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.26</mysql-connector-java.version>
         <mybatis-plus-boot-starter.version>3.4.1</mybatis-plus-boot-starter.version>
         <commons-lang.version>2.6</commons-lang.version>
         <minio.version>8.4.3</minio.version>

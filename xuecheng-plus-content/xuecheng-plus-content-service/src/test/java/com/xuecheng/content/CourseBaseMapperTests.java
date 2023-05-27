@@ -21,7 +21,6 @@ class CourseBaseMapperTests {
     @Autowired
     CourseBaseMapper courseBaseMapper;
 
-
     @Test
     void testCourseBaseMapper() {
         CourseBase courseBase = courseBaseMapper.selectById(74L);

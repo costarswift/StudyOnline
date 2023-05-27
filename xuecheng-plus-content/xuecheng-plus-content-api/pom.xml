@@ -12,9 +12,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.xuecheng</groupId>
-            <artifactId>xuecheng-plus-content-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
         <dependency>
@@ -22,6 +21,19 @@
             <artifactId>xuecheng-plus-content-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.xuecheng</groupId>
+            <artifactId>xuecheng-plus-base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+
         <!--cloud的基础环境包-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -61,6 +73,7 @@
             <artifactId>swagger-spring-boot-starter</artifactId>
             <version>1.9.0.RELEASE</version>
         </dependency>
+
 
     </dependencies>
 

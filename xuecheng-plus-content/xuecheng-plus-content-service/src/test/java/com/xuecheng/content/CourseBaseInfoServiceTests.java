@@ -16,7 +16,7 @@ public class CourseBaseInfoServiceTests {
 
 
     @Test
-    void testCourseBaseInfoService() {
+    void testQueryCourseBaseList() {
         //查询条件
         QueryCourseParamsDto queryCourseParamsDto = new QueryCourseParamsDto();
         queryCourseParamsDto.setCourseName("java");
@@ -31,5 +31,6 @@ public class CourseBaseInfoServiceTests {
         PageResult<CourseBase> courseBasePageResult = courseBaseInfoService.queryCourseBaseList(pageParams, queryCourseParamsDto);
         System.out.println(courseBasePageResult);
     }
+
 
 }
