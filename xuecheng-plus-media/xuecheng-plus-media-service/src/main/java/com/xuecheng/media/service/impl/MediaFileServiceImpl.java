@@ -38,11 +38,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @author Mr.M
+ * @author Costar
  * @version 1.0
  * @description TODO
- * @date 2022/9/10 8:58
+ * @date 2023年5月31日 15点08分
  */
+
+
 @Slf4j
 @Service
 public class MediaFileServiceImpl implements MediaFileService {
@@ -188,8 +190,8 @@ public class MediaFileServiceImpl implements MediaFileService {
      * @param bucket  桶
      * @param objectName 对象名称
      * @return com.xuecheng.media.model.po.MediaFiles
-     * @author Mr.M
-     * @date 2022/10/12 21:22
+     * @author Costar
+     * @date 2023年5月31日 15点04分
      */
     @Transactional
     public MediaFiles addMediaFilesToDb(Long companyId,String fileMd5,UploadFileParamsDto uploadFileParamsDto,String bucket,String objectName){
@@ -218,7 +220,7 @@ public class MediaFileServiceImpl implements MediaFileService {
             mediaFiles.setAuditStatus("002003");
             //插入数据库
             int insert = mediaFilesMapper.insert(mediaFiles);
-            if(insert<=0){
+            if(insert <= 0){
                 log.debug("向数据库保存文件失败,bucket:{},objectName:{}",bucket,objectName);
                 return null;
             }
@@ -449,12 +451,12 @@ public class MediaFileServiceImpl implements MediaFileService {
      * @return
      */
     private String getFilePathByMd5(String fileMd5,String fileExt){
-        return   fileMd5.substring(0,1) + "/" + fileMd5.substring(1,2) + "/" + fileMd5 + "/" +fileMd5 +fileExt;
+        return   fileMd5.charAt(0) + "/" + fileMd5.charAt(1) + "/" + fileMd5 + "/" +fileMd5 +fileExt;
     }
 
     //得到分块文件的目录
     private String getChunkFileFolderPath(String fileMd5) {
-        return fileMd5.substring(0, 1) + "/" + fileMd5.substring(1, 2) + "/" + fileMd5 + "/" + "chunk" + "/";
+        return fileMd5.charAt(0) + "/" + fileMd5.charAt(1) + "/" + fileMd5 + "/" + "chunk" + "/";
     }
 
 }

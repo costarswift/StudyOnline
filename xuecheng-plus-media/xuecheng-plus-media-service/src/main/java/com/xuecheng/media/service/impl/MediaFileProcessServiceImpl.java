@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * @author Mr.M
+ * @author Costar
  * @version 1.0
  * @description MediaFileProcess接口实现
- * @date 2023/2/19 10:44
+ * @date 2023年5月31日 14点59分
  */
 @Slf4j
 @Service
@@ -40,7 +40,7 @@ public class MediaFileProcessServiceImpl implements MediaFileProcessService {
     //实现如下
     public boolean startTask(long id) {
         int result = mediaProcessMapper.startTask(id);
-        return result<=0?false:true;
+        return result > 0;
     }
 
     @Override
@@ -49,13 +49,13 @@ public class MediaFileProcessServiceImpl implements MediaFileProcessService {
         //要更新的任务
         MediaProcess mediaProcess = mediaProcessMapper.selectById(taskId);
         if(mediaProcess == null){
-            return ;
+            return;
         }
         //如果任务执行失败
         if(status.equals("3")){
             //更新MediaProcess表的状态
             mediaProcess.setStatus("3");
-            mediaProcess.setFailCount(mediaProcess.getFailCount()+1);//失败次数加1
+            mediaProcess.setFailCount(mediaProcess.getFailCount() + 1);//失败次数加1
             mediaProcess.setErrormsg(errorMsg);
             mediaProcessMapper.updateById(mediaProcess);
             //更高效的更新方式
