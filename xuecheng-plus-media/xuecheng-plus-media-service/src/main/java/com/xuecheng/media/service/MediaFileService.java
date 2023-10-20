@@ -99,4 +99,6 @@ public interface MediaFileService {
   * @return 下载后的文件
   */
  public File downloadFileFromMinIO(String bucket, String objectName);
+
+ MediaFiles getFileById(String mediaId);
 }
