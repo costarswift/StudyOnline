@@ -1,5 +1,6 @@
 package com.xuecheng.content.api;
 
+import com.xuecheng.content.model.dto.BindTeachplanMediaDto;
 import com.xuecheng.content.model.dto.SaveTeachplanDto;
 import com.xuecheng.content.model.dto.TeachplanDto;
 import com.xuecheng.content.service.TeachplanService;
@@ -26,14 +27,14 @@ public class TeachplanController {
 
     @ApiOperation("课程计划创建或修改")
     @PostMapping("/teachplan")
-    public void saveTeachplan( @RequestBody SaveTeachplanDto teachplan){
+    public void saveTeachplan(@RequestBody SaveTeachplanDto teachplan){
         teachplanService.saveTeachplan(teachplan);
     }
 
     @DeleteMapping("/teachplan/{teachplanId}")
     @ApiOperation("删除课程计划")
     @ApiImplicitParam(value = "teachplanId", name = "课程计划id", required = true, dataType = "Long", paramType = "path")
-    public void deleteTeachplanById( @PathVariable Long teachplanId){
+    public void deleteTeachplanById(@PathVariable Long teachplanId){
         teachplanService.deleteTeachplanById(teachplanId);
     }
 
@@ -50,4 +51,17 @@ public class TeachplanController {
     public void moveup(@PathVariable Long teachplanId){
 
     }
+
+    @ApiOperation(value = "课程计划和媒资信息绑定")
+    @PostMapping("/teachplan/association/media")
+    public void associationMedia(@RequestBody BindTeachplanMediaDto bindTeachplanMediaDto){
+        teachplanService.associationMedia(bindTeachplanMediaDto);
+    }
+
+    @ApiOperation(value = "删除课程计划绑定的媒资视频")
+    @DeleteMapping("/teachplan/association/media/{teachplanId}/{mediaId}")
+    public void deleteMedia(@PathVariable long teachplanId){
+        teachplanService.deleteMedia(teachplanId);
+    }
+
 }

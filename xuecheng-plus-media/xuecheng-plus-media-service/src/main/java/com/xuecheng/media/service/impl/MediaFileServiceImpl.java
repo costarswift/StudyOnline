@@ -195,39 +195,31 @@ public class MediaFileServiceImpl implements MediaFileService {
      */
     @Transactional
     public MediaFiles addMediaFilesToDb(Long companyId,String fileMd5,UploadFileParamsDto uploadFileParamsDto,String bucket,String objectName){
-        //将文件信息保存到数据库
+        //从数据库查询文件
         MediaFiles mediaFiles = mediaFilesMapper.selectById(fileMd5);
-        if(mediaFiles == null){
+        if (mediaFiles == null) {
             mediaFiles = new MediaFiles();
-            BeanUtils.copyProperties(uploadFileParamsDto,mediaFiles);
-            //文件id
+            //拷贝基本信息
+            BeanUtils.copyProperties(uploadFileParamsDto, mediaFiles);
             mediaFiles.setId(fileMd5);
-            //机构id
-            mediaFiles.setCompanyId(companyId);
-            //桶
-            mediaFiles.setBucket(bucket);
-            //file_path
-            mediaFiles.setFilePath(objectName);
-            //file_id
             mediaFiles.setFileId(fileMd5);
-            //url
-            mediaFiles.setUrl("/"+bucket+"/"+objectName);
-            //上传时间
+            mediaFiles.setCompanyId(companyId);
+            //媒体类型
+            mediaFiles.setUrl("/" + bucket + "/" + objectName);
+            mediaFiles.setBucket(bucket);
+            mediaFiles.setFilePath(objectName);
             mediaFiles.setCreateDate(LocalDateTime.now());
-            //状态
-            mediaFiles.setStatus("1");
-            //审核状态
             mediaFiles.setAuditStatus("002003");
-            //插入数据库
+            mediaFiles.setStatus("1");
+            //保存文件信息到文件表
             int insert = mediaFilesMapper.insert(mediaFiles);
-            if(insert <= 0){
-                log.debug("向数据库保存文件失败,bucket:{},objectName:{}",bucket,objectName);
-                return null;
+            if (insert < 0) {
+                log.error("保存文件信息到数据库失败,{}", mediaFiles.toString());
+                XueChengPlusException.cast("保存文件信息失败");
             }
-            //记录待处理任务
+            //添加到待处理任务表
             addWaitingTask(mediaFiles);
-
-            return mediaFiles;
+            log.debug("保存文件信息到数据库成功,{}", mediaFiles.toString());
 
         }
         return mediaFiles;
@@ -240,25 +232,20 @@ public class MediaFileServiceImpl implements MediaFileService {
      * @param mediaFiles 媒资文件信息
      */
     private void addWaitingTask(MediaFiles mediaFiles){
-
         //文件名称
         String filename = mediaFiles.getFilename();
         //文件扩展名
         String extension = filename.substring(filename.lastIndexOf("."));
-        //获取文件的 mimeType
+        //文件mimeType
         String mimeType = getMimeType(extension);
-        if(mimeType.equals("video/x-msvideo")){//如果是avi视频写入待处理任务
+        //如果是avi视频添加到视频待处理表
+        if(mimeType.equals("video/x-msvideo")){
             MediaProcess mediaProcess = new MediaProcess();
             BeanUtils.copyProperties(mediaFiles,mediaProcess);
-            //状态是未处理
-            mediaProcess.setStatus("1");
-            mediaProcess.setCreateDate(LocalDateTime.now());
-            mediaProcess.setFailCount(0);//失败次数默认0
-            mediaProcess.setUrl(null);
+            mediaProcess.setStatus("1");//未处理
+            mediaProcess.setFailCount(0);//失败次数默认为0
             mediaProcessMapper.insert(mediaProcess);
-
         }
-
     }
 
 
@@ -442,6 +429,12 @@ public class MediaFileServiceImpl implements MediaFileService {
             }
         }
         return null;
+    }
+
+    @Override
+    public MediaFiles getFileById(String mediaId) {
+        MediaFiles mediaFiles = mediaFilesMapper.selectById(mediaId);
+        return mediaFiles;
     }
 
     /**
